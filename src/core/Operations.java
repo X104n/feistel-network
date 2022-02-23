@@ -1,11 +1,10 @@
 package core;
 
-import java.awt.image.AreaAveragingScaleFilter;
-import java.util.ArrayList;
+import documents.Main;
 
 public class Operations {
 
-    public int[] SingleHexToBinary(char hex) {
+    public static int[] SingleHexToBinary(char hex) {
         int[] binary = new int[4];
         switch (hex) {
             case '0':
@@ -98,5 +97,35 @@ public class Operations {
             result = 0;
         }
         return result;
+    }
+
+    public static int[] multiply(int[] A, int[] B, int[] polymerVector) {
+        int[] result = new int[A.length];
+
+        for (int i = 0; i < B.length; i++) {
+            if (B[i] == 1) {
+                int[] shift = A.clone();
+                Main.printArray(A);
+                for (int j = 0; j < i; j++) {
+                    boolean overflow = (shift[(A.length - 1)] == 1);
+                    shift = shifter(shift);
+                    if (overflow) {
+                        shift = Operations.XOR(shift, polymerVector);
+                    }
+                    System.out.print("After shifting ");
+                    Main.printArray(shift);
+                }
+                result = Operations.XOR(result, shift);
+            }
+        }
+        return result;
+    }
+
+    public static int[] shifter(int[] input) {
+        for (int i = (input.length - 1); i >= 1; i--) {
+            input[i] = input[i - 1];
+        }
+        input[0] = 0;
+        return input;
     }
 }

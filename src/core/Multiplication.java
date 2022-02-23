@@ -1,9 +1,6 @@
 package core;
 
-import main.Main;
-
-import java.sql.SQLOutput;
-import java.util.ArrayList;
+import documents.Main;
 
 public class Multiplication {
 
@@ -30,7 +27,6 @@ public class Multiplication {
                     }
                     System.out.print("After shifting ");
                     Main.printArray(shift);
-
                 }
                 result = Operations.XOR(result, shift);
             }
