@@ -42,9 +42,13 @@ public class Function {
     public String getArray(int[] array){
         String result = "";
         for(int i = 0; i<array.length; i++){
-            result = result + array[i] + " ";
+            result = result + array[i] + "";
         }
         return result;
+    }
+
+    public int[] getKey(){
+        return this.key;
     }
 
 

@@ -1,14 +1,12 @@
 package main;
 
-import documents.Main;
-
 /**
  * This class has all the operations including XOR and multiplication.
  */
 public class Operations {
 
     public static int[] roundKey(int[] key, int round) {
-        for (int j = 0; j < round; j++) {
+        for (int j = 0; j < round*4; j++) {
             int firstBit = key[key.length - 1];
             for (int i = key.length - 1; i >= 1; i--) {
                 key[i] = key[i - 1];
@@ -33,17 +31,14 @@ public class Operations {
         for (int i = 0; i < B.length; i++) {
             if (B[i] == 1) {
                 int[] shift = A.clone();
-                documents.Main.printArray(A);
                 for (int j = 0; j < i; j++) {
                     boolean overflow = (shift[(A.length - 1)] == 1);
                     shift = shifter(shift);
                     if (overflow) {
-                        shift = core.Operations.XOR(shift, polymerVector);
+                        shift = Operations.XOR(shift, polymerVector);
                     }
-                    System.out.print("After shifting ");
-                    Main.printArray(shift);
                 }
-                result = core.Operations.XOR(result, shift);
+                result = Operations.XOR(result, shift);
             }
         }
         return result;
