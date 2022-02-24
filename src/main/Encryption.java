@@ -5,6 +5,9 @@ package main;
  */
 public class Encryption {
 
+    Function function;
+
+
     public Encryption(String key, String text, Function f){
 
 

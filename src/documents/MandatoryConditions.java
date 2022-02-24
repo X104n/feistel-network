@@ -34,7 +34,7 @@ public class MandatoryConditions {
     public static int[] mandatoryPolymer(String input){
         int[] result = new int[input.length()*4];
         for(int i = 0; i < input.length(); i++){
-            int[] temp = Operations.SingleHexToBinary(input.charAt(i));
+            int[] temp = Operations.hexToBinary(input.charAt(i));
             result = add(result, temp);
             for(int j = 0; j < temp.length; j++){
                 result[i] = temp[j];

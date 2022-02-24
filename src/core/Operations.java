@@ -4,7 +4,7 @@ import documents.Main;
 
 public class Operations {
 
-    public static int[] SingleHexToBinary(char hex) {
+    public static int[] hexToBinary(char hex) {
         int[] binary = new int[4];
         switch (hex) {
             case '0':
