@@ -12,10 +12,10 @@ public class Main {
 
     public static void main(String[] args) {
         Function function = new Function(key, polymer);
-        System.out.println(function.getArray(function.getKey()));
+        System.out.println(getArray(function.getKey()));
         Encryption e = new Encryption(text, function);
-        System.out.println(function.getArray(e.plaintext));
-        System.out.println(function.getArray(e.run(8)));
+        System.out.println(getArray(e.plaintext));
+        System.out.println(getArray(e.run(8)));
 
 
         /**
@@ -29,4 +29,11 @@ public class Main {
         //Encryption mandatoryEncryption = new Encryption(key, text, function);
     }
 
+    public static String getArray(int[] array){
+        String result = "";
+        for(int i = 0; i<array.length; i++){
+            result = result + array[i] + "";
+        }
+        return result;
+    }
 }

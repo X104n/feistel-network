@@ -2,7 +2,7 @@ package main;
 
 
 /**
- * This class will have controll over the function you have choosen.
+ * This class will have control over the function you have chosen.
  * As for the mandatory this function is: F(x, k) = x^2 * k + x * k^2
  */
 public class Function {
@@ -39,14 +39,6 @@ public class Function {
 
     }
 
-    public String getArray(int[] array){
-        String result = "";
-        for(int i = 0; i<array.length; i++){
-            result = result + array[i] + "";
-        }
-        return result;
-    }
-
     public int[] getKey(){
         return this.key;
     }
@@ -56,12 +48,10 @@ public class Function {
 
         int[] result = new int[4*key.length()];
         for(int i = 0; i<key.length(); i++){
-            int j = 0;
             char c = key.charAt(i);
             int[] temp = Operations.hexToBinary(c);
-            for(int k : temp){
-                result[(i*4)+j] = k;
-                j++;
+            for(int k = 0; k < temp.length; k++){
+                result[(i*4)+k] = temp[k];
             }
         }
         return result;
