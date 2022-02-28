@@ -40,10 +40,10 @@ public class Main {
         System.out.print("Key: ");
         System.out.println(Arrays.toString(function.getKey()));
 
-        Encryption e = new Encryption(text, function);
+        Network e = new Network(text, function);
 
         System.out.print("Plaintext: ");
-        System.out.println(Arrays.toString(e.plaintext));
+        System.out.println(Arrays.toString(e.getPlaintext()));
 
         System.out.print("Decrypted message: ");
         System.out.println(Arrays.toString(e.runEncryption(8, true))+"\n");
@@ -55,10 +55,10 @@ public class Main {
         System.out.print("Key: ");
         System.out.println(Arrays.toString(testFunction.getKey()));
 
-        Encryption e = new Encryption(cipher, testFunction);
+        Network e = new Network(cipher, testFunction);
 
         System.out.print("Cipher: ");
-        System.out.println(Arrays.toString(e.plaintext));
+        System.out.println(Arrays.toString(e.getPlaintext()));
 
         System.out.print("Encrypted message: ");
         System.out.println(Arrays.toString(e.runEncryption(8, false))+"\n");

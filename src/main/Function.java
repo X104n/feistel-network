@@ -1,10 +1,5 @@
 package main;
 
-
-/**
- * This class will have controll over the function you have choosen.
- * As for the mandatory this function is: F(x, k) = x^2 * k + x * k^2
- */
 public class Function {
 
     int[] key;
@@ -15,18 +10,32 @@ public class Function {
         this.polymer = field;
     }
 
+    /**
+     *  This converts the key from hex to binary
+     * @param key The original key
+     * @return The original key in binary form
+     */
+    public int[] keyConverter(String key){
+        int[] result = new int[key.length()*4];
+        for(int i = 0; i<key.length(); i++){
+            char c = key.charAt(i);
+            int[] temp = Operations.hexToBinary(c);
+            System.arraycopy(temp, 0, result, (i * 4), temp.length);
+        }
+        return result;
+    }
 
     /**
-     * F(x, k) = x^2 * k + x * k^2
-     * @param rightSide
-     * @param round
-     * @return
+     * F(x, k) = x^2 * k + x * k^2 is the function that is being used in the assignment
+     *
+     * @param rightSide Half of the block that is used as input
+     * @param round what round it is, so we can use the right key
+     * @return output of the function
      */
     public int[] calculate(int[] rightSide, int round){
         int[] result1;
         int[] result2;
         int[] roundKey = Operations.roundKey(this.key, round);
-
 
         result1 = Operations.multiply(rightSide, rightSide, polymer);
         result1 = Operations.multiply(result1, roundKey, polymer);
@@ -39,22 +48,7 @@ public class Function {
     }
 
     public int[] getKey(){
-        return this.key;
+        return key;
     }
 
-
-    public int[] keyConverter(String key){
-
-        int[] result = new int[4*key.length()];
-        for(int i = 0; i<key.length(); i++){
-            int j = 0;
-            char c = key.charAt(i);
-            int[] temp = Operations.hexToBinary(c);
-            for(int k : temp){
-                result[(i*4)+j] = k;
-                j++;
-            }
-        }
-        return result;
-    }
 }

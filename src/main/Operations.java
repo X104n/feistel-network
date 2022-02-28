@@ -9,9 +9,7 @@ public class Operations {
         int[] temp = key.clone();
         for (int j = 0; j < (round*4); j++) {
             int firstBit = temp[temp.length - 1];
-            for (int i = temp.length - 1; i >= 1; i--) {
-                temp[i] = temp[i - 1];
-            }
+            System.arraycopy(temp, 0, temp, 1, temp.length - 1);
             temp[0] = firstBit;
         }
         return temp;
