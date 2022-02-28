@@ -6,14 +6,15 @@ package main;
 public class Operations {
 
     public static int[] roundKey(int[] key, int round) {
-        for (int j = 0; j < round*4; j++) {
-            int firstBit = key[key.length - 1];
-            for (int i = key.length - 1; i >= 1; i--) {
-                key[i] = key[i - 1];
+        int[] temp = key.clone();
+        for (int j = 0; j < (round*4); j++) {
+            int firstBit = temp[temp.length - 1];
+            for (int i = temp.length - 1; i >= 1; i--) {
+                temp[i] = temp[i - 1];
             }
-            key[0] = firstBit;
+            temp[0] = firstBit;
         }
-        return key;
+        return temp;
     }
 
     public static int[] XOR(int[] v1, int[] v2) {

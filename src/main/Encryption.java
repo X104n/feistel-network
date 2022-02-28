@@ -38,8 +38,8 @@ public class Encryption {
             //xor function with left
             int[] tempRight = Operations.XOR(rightFunction, left);
 
-            left = right;
-            right = tempRight;
+            left = right.clone();
+            right = tempRight.clone();
         }
 
 //        int[] result = new int[plaintext.length];
@@ -53,7 +53,7 @@ public class Encryption {
 //            System.out.println("No");
 //        }
 
-        return left;
+        return right;
     }
 
 }

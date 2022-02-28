@@ -23,28 +23,19 @@ public class Function {
      * @return
      */
     public int[] calculate(int[] rightSide, int round){
-        int[] result = new int[rightSide.length];
-        int[] result2 = new int[rightSide.length];
+        int[] result1;
+        int[] result2;
         int[] roundKey = Operations.roundKey(this.key, round);
 
 
-        result = Operations.multiply(rightSide, rightSide, polymer);
-        result = Operations.multiply(result, roundKey, polymer);
+        result1 = Operations.multiply(rightSide, rightSide, polymer);
+        result1 = Operations.multiply(result1, roundKey, polymer);
 
         result2 = Operations.multiply(roundKey, roundKey, polymer);
         result2 = Operations.multiply(result2, rightSide, polymer);
 
-        result = Operations.XOR(result, result2);
-        return result;
+        return Operations.XOR(Operations.XOR(result1, result2), result2);
 
-    }
-
-    public String getArray(int[] array){
-        String result = "";
-        for(int i = 0; i<array.length; i++){
-            result = result + array[i] + "";
-        }
-        return result;
     }
 
     public int[] getKey(){
