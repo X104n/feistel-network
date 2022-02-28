@@ -14,60 +14,54 @@ public class Main {
     static String testText = "123456789ABCDEF0";
     static String text = "1F2A0E341F2A0E34";
 
-    static String testDecrypt = "3A3DEFF7ABBAC8DB";
-    static String decrypt = "";
+    static String testCipher = "3A3DEFF7ABBAC8DB";
+    static String cipher = "AAAAAAAAAAAAAAAA";
 
     static int[] polymer = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1};
 
     public static void main(String[] args) {
-        //mandatory();
-        testEncrypt();
-        testDecrypt();
+        // Mandatory encryption and decryption
+        System.out.println("Encrypting mandatory conditions");
+        encrypt(key, text);
+        System.out.println("Decrypting mandatory conditions");
+        decrypt(key, cipher);
+
+        // Test data encryption and decryption
+        System.out.println("Encrypting test conditions");
+        encrypt(testKey, testText);
+        System.out.println("Decrypting test conditions");
+        decrypt(testKey, testCipher);
     }
 
-    private static void mandatory(){
+
+    private static void encrypt(String key, String text) {
         Function function = new Function(key, polymer);
 
-        System.out.println("Key: ");
+        System.out.print("Key: ");
         System.out.println(Arrays.toString(function.getKey()));
 
         Encryption e = new Encryption(text, function);
 
-        System.out.println("Plaintext:");
+        System.out.print("Plaintext: ");
         System.out.println(Arrays.toString(e.plaintext));
 
-        System.out.println("Decrypted message:");
-        System.out.println(Arrays.toString(e.runEncryption(8, true)));
+        System.out.print("Decrypted message: ");
+        System.out.println(Arrays.toString(e.runEncryption(8, true))+"\n");
     }
 
-    private static void testDecrypt(){
-        Function testFunction = new Function(testKey, polymer);
+    private static void decrypt(String key, String cipher){
+        Function testFunction = new Function(key, polymer);
 
-        System.out.println("Key: ");
+        System.out.print("Key: ");
         System.out.println(Arrays.toString(testFunction.getKey()));
 
-        Encryption e = new Encryption(testDecrypt, testFunction);
+        Encryption e = new Encryption(cipher, testFunction);
 
-        System.out.println("Cipher:");
+        System.out.print("Cipher: ");
         System.out.println(Arrays.toString(e.plaintext));
 
-        System.out.println("Encrypted message:");
-        System.out.println(Arrays.toString(e.runEncryption(8, false)));
-    }
-
-    private static void testEncrypt(){
-        Function testFunction = new Function(testKey, polymer);
-
-        System.out.println("Key: ");
-        System.out.println(Arrays.toString(testFunction.getKey()));
-
-        Encryption e = new Encryption(testText, testFunction);
-
-        System.out.println("Plaintext:");
-        System.out.println(Arrays.toString(e.plaintext));
-
-        System.out.println("Decrypted message:");
-        System.out.println(Arrays.toString(e.runEncryption(8, true)));
+        System.out.print("Encrypted message: ");
+        System.out.println(Arrays.toString(e.runEncryption(8, false))+"\n");
     }
 
 }

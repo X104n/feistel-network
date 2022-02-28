@@ -54,8 +54,6 @@ public class Encryption {
 
                 right = left.clone();
                 left = tempLeft.clone();
-
-                System.out.println("This is round "+i);
             }
         }
         int[] result = new int[plaintext.length];
