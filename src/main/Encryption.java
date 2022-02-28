@@ -11,48 +11,59 @@ public class Encryption {
     int[] plaintext;
 
 
-    public Encryption(String text, Function f){
+    public Encryption(String text, Function f) {
         this.function = f;
         this.plaintext = binaryText(text);
     }
 
-    public int[] binaryText(String text){
+    public int[] binaryText(String text) {
         return function.keyConverter(text);
     }
 
-    public int[] run(int rounds){
+    public int[] runEncryption(int rounds, boolean encrypt) {
         //Copy left side of the plain text
-        int[] left = new int[plaintext.length/2];
-        for(int i = 0; i < plaintext.length/2; i++){
+        int[] left = new int[plaintext.length / 2];
+        for (int i = 0; i < plaintext.length / 2; i++) {
             left[i] = plaintext[i];
         }
         //Copy the right side of the plain text
-        int[] right = new int[plaintext.length/2];
-        for(int i =  plaintext.length/2; i < plaintext.length; i++){
-            right[i-plaintext.length/2] = plaintext[i];
+        int[] right = new int[plaintext.length / 2];
+        for (int i = plaintext.length / 2; i < plaintext.length; i++) {
+            right[i - plaintext.length / 2] = plaintext[i];
         }
         //How many rounds we should run the network
-        for(int i = 0; i < rounds; i++){
+        if (encrypt) {
+            for (int i = 0; i < rounds; i++) {
 
-            //Put right into function
-            int[] rightFunction = function.calculate(right, i);
+                //Put right into function
+                int[] rightFunction = function.calculate(right, i);
 
-            //xor function with left
-            int[] tempRight = Operations.XOR(rightFunction, left);
+                //xor function with left
+                int[] tempRight = Operations.XOR(rightFunction, left);
 
-            left = right.clone();
-            right = tempRight.clone();
-            System.out.println("This is round "+i);
-            System.out.println(Arrays.toString(left));
-            System.out.println(Arrays.toString(right));
+                left = right.clone();
+                right = tempRight.clone();
+            }
+        } else {
+            for (int i = (rounds - 1); i >= 0; i--) {
+                //Put right into function
+                int[] leftFunction = function.calculate(left, i);
+
+                //xor function with left
+                int[] tempLeft = Operations.XOR(leftFunction, right);
+
+                right = left.clone();
+                left = tempLeft.clone();
+
+                System.out.println("This is round "+i);
+            }
         }
-
         int[] result = new int[plaintext.length];
-        for(int i = 0; i < result.length; i++){
-            if(i < result.length/2){
+        for (int i = 0; i < result.length; i++) {
+            if (i < result.length / 2) {
                 result[i] = left[i];
-            }else {
-                result[i] = right[i-(result.length/2)];
+            } else {
+                result[i] = right[i - (result.length / 2)];
             }
         }
 
@@ -60,3 +71,4 @@ public class Encryption {
     }
 
 }
+

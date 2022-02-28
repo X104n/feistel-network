@@ -1,73 +1,73 @@
 package main;
 
 
+import java.util.Arrays;
+
 /**
  * This is where everything is run from
  */
 public class Main {
 
-    static String key = "AAAABBBB";
-    //static String key = "3ACDDEF2";
+    static String testKey = "AAAABBBB";
+    static String key = "3ACDDEF2";
 
-    static String text = "123456789ABCDEF0";
-    //static String text = "1F2A0E341F2A0E34";
+    static String testText = "123456789ABCDEF0";
+    static String text = "1F2A0E341F2A0E34";
 
-    //static int[] polymer = {1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    static String testDecrypt = "3A3DEFF7ABBAC8DB";
+    static String decrypt = "";
+
     static int[] polymer = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1};
-    static int[] v1 = {1,1,0,0};
-    static int[] v2 = {1,0,1,1};
-    static int[] pol = {1,1,0,0};
 
     public static void main(String[] args) {
+        //mandatory();
+        testEncrypt();
+        testDecrypt();
+    }
+
+    private static void mandatory(){
         Function function = new Function(key, polymer);
 
         System.out.println("Key: ");
-        System.out.println(getArray(function.getKey()));
+        System.out.println(Arrays.toString(function.getKey()));
 
         Encryption e = new Encryption(text, function);
 
         System.out.println("Plaintext:");
-        System.out.println(getArray(e.plaintext));
+        System.out.println(Arrays.toString(e.plaintext));
 
         System.out.println("Decrypted message:");
-        System.out.println(getArray(e.run(8)));
-
-        System.out.println("Round keys: ");
-        System.out.println(getArray(Operations.roundKey(function.getKey(), 0)));
-        System.out.println(getArray(Operations.roundKey(function.getKey(), 8)));
-
-        System.out.println("Test multiplication: ");
-        System.out.println(getArray(Operations.multiply(v1,v2,pol)));
-
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 1)));
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 2)));
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 3)));
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 4)));
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 5)));
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 6)));
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 7)));
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 8)));
-//        System.out.println(getArray(Operations.roundKey(function.getKey(), 9)));
-
-
-
-        /**
-        int[] test = new int[8];
-        test[0] = 1;
-        test[7] = 1;
-        System.out.println(function.getArray(test));
-        Operations.roundKey(test, 4);
-        System.out.println(function.getArray(test));
-*/
-        //Encryption mandatoryEncryption = new Encryption(key, text, function);
+        System.out.println(Arrays.toString(e.runEncryption(8, true)));
     }
 
-    public static String getArray(int[] array){
-        StringBuilder result = new StringBuilder();
-        for (int j : array) {
-            result.append(j);
-        }
-        return result.toString();
+    private static void testDecrypt(){
+        Function testFunction = new Function(testKey, polymer);
+
+        System.out.println("Key: ");
+        System.out.println(Arrays.toString(testFunction.getKey()));
+
+        Encryption e = new Encryption(testDecrypt, testFunction);
+
+        System.out.println("Cipher:");
+        System.out.println(Arrays.toString(e.plaintext));
+
+        System.out.println("Encrypted message:");
+        System.out.println(Arrays.toString(e.runEncryption(8, false)));
+    }
+
+    private static void testEncrypt(){
+        Function testFunction = new Function(testKey, polymer);
+
+        System.out.println("Key: ");
+        System.out.println(Arrays.toString(testFunction.getKey()));
+
+        Encryption e = new Encryption(testText, testFunction);
+
+        System.out.println("Plaintext:");
+        System.out.println(Arrays.toString(e.plaintext));
+
+        System.out.println("Decrypted message:");
+        System.out.println(Arrays.toString(e.runEncryption(8, true)));
     }
 
 }
