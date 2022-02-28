@@ -7,8 +7,16 @@ package main;
 public class Main {
 
     static String key = "AAAABBBB";
+    //static String key = "3ACDDEF2";
+
     static String text = "123456789ABCDEF0";
-    static int[] polymer = {1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    //static String text = "1F2A0E341F2A0E34";
+
+    //static int[] polymer = {1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    static int[] polymer = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1};
+    static int[] v1 = {1,1,0,0};
+    static int[] v2 = {1,0,1,1};
+    static int[] pol = {1,1,0,0};
 
     public static void main(String[] args) {
         Function function = new Function(key, polymer);
@@ -22,11 +30,14 @@ public class Main {
         System.out.println(getArray(e.plaintext));
 
         System.out.println("Decrypted message:");
-        System.out.println(getArray(e.run(7)));
+        System.out.println(getArray(e.run(8)));
 
         System.out.println("Round keys: ");
         System.out.println(getArray(Operations.roundKey(function.getKey(), 0)));
         System.out.println(getArray(Operations.roundKey(function.getKey(), 8)));
+
+        System.out.println("Test multiplication: ");
+        System.out.println(getArray(Operations.multiply(v1,v2,pol)));
 
 //        System.out.println(getArray(Operations.roundKey(function.getKey(), 1)));
 //        System.out.println(getArray(Operations.roundKey(function.getKey(), 2)));

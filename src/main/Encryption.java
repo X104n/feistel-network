@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Arrays;
+
 /**
  * This will encrypt the plaintext to the ciphertext using a Feistel Network
  */
@@ -40,20 +42,21 @@ public class Encryption {
 
             left = right.clone();
             right = tempRight.clone();
+            System.out.println("This is round "+i);
+            System.out.println(Arrays.toString(left));
+            System.out.println(Arrays.toString(right));
         }
 
-//        int[] result = new int[plaintext.length];
-//        for(int i = 0; i < result.length; i++){
-//            if(i < result.length/2){
-//                result[i] = left[i];
-//            }else {
-//                System.out.println(plaintext.length);
-//                result[i] = right[i-(result.length/2)];
-//            }
-//            System.out.println("No");
-//        }
+        int[] result = new int[plaintext.length];
+        for(int i = 0; i < result.length; i++){
+            if(i < result.length/2){
+                result[i] = left[i];
+            }else {
+                result[i] = right[i-(result.length/2)];
+            }
+        }
 
-        return right;
+        return result;
     }
 
 }

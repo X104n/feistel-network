@@ -34,7 +34,7 @@ public class Function {
         result2 = Operations.multiply(roundKey, roundKey, polymer);
         result2 = Operations.multiply(result2, rightSide, polymer);
 
-        return Operations.XOR(Operations.XOR(result1, result2), result2);
+        return Operations.XOR(result1, result2);
 
     }
 

@@ -34,7 +34,7 @@ public class Operations {
                 int[] shift = A.clone();
                 for (int j = 0; j < i; j++) {
                     boolean overflow = (shift[(A.length - 1)] == 1);
-                    shift = shifter(shift);
+                    shifter(shift);
                     if (overflow) {
                         shift = Operations.XOR(shift, polymerVector);
                     }
@@ -45,66 +45,78 @@ public class Operations {
         return result;
     }
 
-    public static int[] shifter(int[] input) {
-        for (int i = (input.length - 1); i >= 1; i--) {
-            input[i] = input[i - 1];
-        }
+    public static void shifter(int[] input) {
+        if (input.length - 1 >= 0) System.arraycopy(input, 0, input, 1, input.length - 1);
         input[0] = 0;
-        return input;
     }
 
     public static int[] hexToBinary(char hex) {
         int[] binary;
         switch (hex) {
-            case '0':
+            case '0' -> {
                 binary = new int[]{0, 0, 0, 0};
                 return binary;
-            case '1':
+            }
+            case '1' -> {
                 binary = new int[]{0, 0, 0, 1};
                 return binary;
-            case '2':
+            }
+            case '2' -> {
                 binary = new int[]{0, 0, 1, 0};
                 return binary;
-            case '3':
+            }
+            case '3' -> {
                 binary = new int[]{0, 0, 1, 1};
                 return binary;
-            case '4':
+            }
+            case '4' -> {
                 binary = new int[]{0, 1, 0, 0};
                 return binary;
-            case '5':
+            }
+            case '5' -> {
                 binary = new int[]{0, 1, 0, 1};
                 return binary;
-            case '6':
+            }
+            case '6' -> {
                 binary = new int[]{0, 1, 1, 0};
                 return binary;
-            case '7':
+            }
+            case '7' -> {
                 binary = new int[]{0, 1, 1, 1};
                 return binary;
-            case '8':
+            }
+            case '8' -> {
                 binary = new int[]{1, 0, 0, 0};
                 return binary;
-            case '9':
+            }
+            case '9' -> {
                 binary = new int[]{1, 0, 0, 1};
                 return binary;
-            case 'A':
+            }
+            case 'A' -> {
                 binary = new int[]{1, 0, 1, 0};
                 return binary;
-            case 'B':
+            }
+            case 'B' -> {
                 binary = new int[]{1, 0, 1, 1};
                 return binary;
-            case 'C':
+            }
+            case 'C' -> {
                 binary = new int[]{1, 1, 0, 0};
                 return binary;
-            case 'D':
+            }
+            case 'D' -> {
                 binary = new int[]{1, 1, 0, 1};
                 return binary;
-            case 'E':
+            }
+            case 'E' -> {
                 binary = new int[]{1, 1, 1, 0};
                 return binary;
-            case 'F':
+            }
+            case 'F' -> {
                 binary = new int[]{1, 1, 1, 1};
                 return binary;
-
+            }
         }
         throw new IllegalArgumentException("Char not in index");
     }
