@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Arrays;
+
 public class Function {
 
     int[] key;

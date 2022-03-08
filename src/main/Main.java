@@ -45,7 +45,7 @@ public class Main {
         System.out.print("Plaintext: ");
         System.out.println(Arrays.toString(e.getPlaintext()));
 
-        System.out.print("Decrypted message: ");
+        System.out.print("Encrypted message: ");
         System.out.println(Arrays.toString(e.runEncryption(8, true))+"\n");
     }
 
@@ -60,7 +60,7 @@ public class Main {
         System.out.print("Cipher: ");
         System.out.println(Arrays.toString(e.getPlaintext()));
 
-        System.out.print("Encrypted message: ");
+        System.out.print("Decrypted message: ");
         System.out.println(Arrays.toString(e.runEncryption(8, false))+"\n");
     }
 
